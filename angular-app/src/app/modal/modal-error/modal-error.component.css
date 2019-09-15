@@ -1,0 +1,13 @@
+p{
+  font-size: 16px;
+}
+h4{
+  font-size: 24px;
+  fill: #fff;
+}
+
+.img-error{
+  content: url("../../../assets/svg/cancel.svg");
+  cursor: pointer;
+}
+

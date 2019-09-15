@@ -1,0 +1,13 @@
+.green-btn {
+  padding: 7px;
+  border-radius: 2px;
+  border: 1px solid #34ab39;
+  background-color: #4caf50;
+  width: 100%;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+

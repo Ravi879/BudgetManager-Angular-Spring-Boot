@@ -1,0 +1,63 @@
+<section class="py-5 px-1 px-md-2" id="card_container">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="mx-0">
+          <div class="card text-white  mb-3 ">
+            <div class="card-header bg-success text-center h2">Income</div>
+            <div class="card-body bg-light item-card-container" id="card_income_container">
+              <app-item-income *ngFor="let inc of getIncomeList(); " [income]="inc"></app-item-income>
+              <!-- ___________________________ Rows ___________________________  -->
+
+              <!-- <div class="row mb-2" id="expense_55">
+                    <div class="col card text-dark px-1 pt-lg-1 ">
+                        <div role="button" class="btn p-0 card-title m-0 text-right" style="height: 12px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -80 675 675" class="btn-delete-size border-danger "  style="background-color: #fff1f2; height: 16px; width: 18px;">
+                                    <path class="btn-delete-item" d="M0 84V56c0-13.3 10.7-24 24-24h112l9.4-18.7c4-8.2 12.3-13.3 21.4-13.3h114.3c9.1 0 17.4 5.1 21.5 13.3L312 32h112c13.3 0 24 10.7 24 24v28c0 6.6-5.4 12-12 12H12C5.4 96 0 90.6 0 84zm415.2 56.7L394.8 467c-1.6 25.3-22.6 45-47.9 45H101.1c-25.3 0-46.3-19.7-47.9-45L32.8 140.7c-.4-6.9 5.1-12.7 12-12.7h358.5c6.8 0 12.3 5.8 11.9 12.7z">
+                                </path>
+                                </svg>
+                        </div>
+                        <div class="card-body form-row pr-2 pt-2 pb-2 pl-3 item-card ">
+                            <h4 class="col-8 h5 card-text pr-1 pb-1 pb-md-2 pb-lg-1 my-0 itme-description">Lorem ipsum dolor sit </h4>
+                            <p class="col-4 font-weight-bold text-right my-auto pr-1 itme-value" style="color:#28B9B5;">+888,810</p>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-sm-12">
+        <div class="card text-white  mb-3">
+          <div class="card-header bg-danger text-center h2">Expense</div>
+          <div class="card-body bg-light item-card-container" id="card_expense_container">
+              <app-item-expense *ngFor="let exp of getExpenseList(); " [expense]="exp"></app-item-expense>
+            <!-- ___________________________ Rows ___________________________  -->
+            <!-- <div class="row mb-2" id="expense_58">
+                <div class="col card text-dark p-0">
+                    <div class="card-title my-0 text-right" style="height: 12px;">
+                        <button class="btn btn-sm  align-top" style="background-color: red; height: 18px; width: 18px;"></button>
+                    </div>
+                    <div class="card-body form-row pr-2 pt-2 pb-2 pl-3">
+                        <h4 class="col-7 h5 card-text pr-0 pb-0 mb-0 itme-description">Lorem ipsum dolor sit </h4>
+                        <p class="col-3 font-weight-bold text-right pr-0 my-auto itme-value">-111,180</p>
+                        <p class="col-2 mb-0 my-auto text-center" id="item__percentage">
+                            <mark class="item-percentage">21%</mark>
+                        </p>
+                    </div>
+                </div>
+            </div> -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

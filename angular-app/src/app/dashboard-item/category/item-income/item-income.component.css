@@ -1,0 +1,46 @@
+.btn-delete-item{
+  content:url("../../../../assets/svg/recycle-bin.svg");
+  max-width: 18px;
+  max-height: 18px;
+}
+
+.btn-delete-item:hover {
+  cursor: pointer;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+}
+
+.btn-edit-item{
+  content: url("../../../../assets/svg/edit.svg");
+  max-height: 15px;
+  max-width: 16px;
+}
+
+.btn-edit-item:hover {
+  cursor: pointer;
+  border: 1px solid #01A0E9;
+  border-radius: 4px;
+  max-height: 18px;
+  max-width: 18px;
+  padding: 1px;
+}
+
+.item-description,
+.item-value {
+  font-size: 0.889em;
+}
+
+.item-value {
+  color: #28B9B5;
+}
+
+.hide-item_btns{
+  display:none;
+}
+
+@media (min-width: 992px) {
+  .item-description,
+  .item-value {
+      font-size: 1.025em;
+  }
+}

@@ -1,0 +1,30 @@
+<header id="home-section">
+  <div class="dark-overlay">
+    <div class="container">
+
+      <div class="row pt-5">
+        <div class="col pt-5 ">
+          <div class="pt-2" style="color: white">
+            <h2 class="text-center mb-0"> Available Budget in
+              <span id="budget__title__month">Month</span>
+            </h2>
+            <h1 class="display-5 text-center" id="budget__value">{{budget}}</h1>
+            <div class="row py-2 px-3 ml-3 mr-3 mx-sm-auto header-banner-green">
+              <div class="col text-left">INCOME</div>
+              <div class="col ml-2 text-left pl-sm-0" id="budget__income__value">{{totalInc}}</div>
+              <div class="col-1"></div>
+            </div>
+            <div class="row py-2 px-3 mt-2 ml-3 mr-3 mx-sm-auto header-banner-red">
+              <div class="col text-left">EXPENSE</div>
+              <div class="col ml-4 text-left" id="budget__expenses__value">{{totalExp}}</div>
+              <div class="col-2 px-0 text-center" style='background-color: rgba(255, 255, 255, 0.2)'>
+                <span class="" id="budget__expenses__percentage">{{expensePercentage}}</span>%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>

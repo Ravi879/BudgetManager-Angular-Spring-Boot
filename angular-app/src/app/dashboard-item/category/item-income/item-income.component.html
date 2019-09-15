@@ -1,0 +1,14 @@
+<div class='row mb-2' #card id='income_{{income.id}}'>
+  <div class='col card text-dark px-1 pt-0' [ngStyle]="{'background-color': backColor}">
+      <div class="p-0 card-title m-0 text-right item-title btn-item-delete" style="height: 12px;"
+           [ngClass]="{ 'hide-item_btns' : isItemBtnsVisible != true}" (click)="toggleItemBtns()">
+          <img role="button" alt="edit-icon"   class="btn-edit-item" style="margin-right: 10px;" (click)="editItem($event)" />
+          <img role="button" alt="delete-icon" class="btn-delete-item"  (click)="deleteItem($event)" />
+      </div>
+      <div [ngClass]="{ 'mt-1' : isItemBtnsVisible == true}" ></div>
+      <div class='card-body form-row px-3 pb-2 pt-0 mt-2 item-body' (click)="toggleItemBtns()" >
+          <h4 class='col-8 h5 card-text pr-1 pl-0 pb-1 pb-md-2 pb-lg-1 my-0 item-description'>{{income.description}}</h4>
+          <p class='col-4 font-weight-bold text-right my-auto pr-1 item-value'>{{income.value}}</p>
+      </div>
+  </div>
+</div>

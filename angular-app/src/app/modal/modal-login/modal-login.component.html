@@ -1,0 +1,46 @@
+<ng-template class="border-success" #content>
+
+  <div class="modal-header bg-success">
+    <h5 class="modal-title" id="modal-basic-title">Login</h5>
+    <button type="button" class="close" aria-label="Close" (click)="hideDialog()" [disabled]="btnLoginText != 'Login'">&times;</button>
+  </div>
+
+  <form id="form_login" [formGroup]="form">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="login_email">Email</label>
+        <input type="email" placeholder="Email" autocomplete='email' class="form-control" maxlength="50" id="login_email"
+            formControlName="email" [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}">
+            <div class="invalid-feedback">
+              <div *ngIf="form.get('email').errors?.required">Email address is required</div>
+              <div *ngIf="form.get('email').errors?.pattern">Please enter the correct email address</div>
+            </div>
+      </div>
+      <div class="form-group">
+        <label for="login_password">Password</label>
+        <input type="password" placeholder="Password" class="form-control" id="login_password" maxlength="12"
+               formControlName="password" [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
+            <div class="invalid-feedback">
+                <div *ngIf="form.get('password').errors?.required">Password is required</div>
+            </div>
+      </div>
+    </div>
+  </form>
+
+
+
+  <div class="modal-footer">
+    <button type="submit" role="button" class="btn btn-success" name="login_submit" id="login_submit" style="width: 100%;"
+            [ngClass]="{'disabled':form.invalid || btnLoginText!='Login', 'not-allowed': form.invalid}" (click)="onSubmit()">
+      <i class="fa fa-spinner fa-pulse " *ngIf="btnLoginText != 'Login' "></i>
+      {{btnLoginText}}
+    </button>
+
+  </div>
+</ng-template>
+
+
+<button class="btn green-btn text-white" (click)="
+open(content)">
+Log in
+</button>

@@ -1,0 +1,12 @@
+.blue-btn {
+  padding: 7px;
+  border-radius: 2px;
+  border: 1px solid #0e90f7;
+  background-color: #2196f3;
+  width: 100%;
+}
+
+
+.not-allowed {
+  cursor: not-allowed;
+}

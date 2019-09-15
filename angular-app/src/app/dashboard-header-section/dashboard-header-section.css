@@ -1,0 +1,22 @@
+#home-section {
+  background: url('../../assets/img/budget.jpg') no-repeat;
+  background-size: cover;
+  position: center;
+  height: 345px;
+  opacity: 0.9;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+}
+
+.header-banner-green{
+  max-width: 390px;
+  background-color: #28B9B5;
+}
+
+.header-banner-red{
+  max-width: 390px;
+  background-color: #FF5049;
+}

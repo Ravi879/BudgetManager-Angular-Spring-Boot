@@ -1,0 +1,51 @@
+.about-btn {
+  padding: 7px;
+  border-radius: 1px;
+  border: 1px solid #fff;
+  width: 100%;
+}
+
+
+@media (max-width: 467px) {
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Extra Small devices (small, up to 468px) */
+@media (min-width: 468px) {
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Small devices (mobile, 576px and up) */
+@media (min-width: 576px) {
+  p {
+    font-size: 17px;
+  }
+  h2 {
+    font-size: 40px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  p {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 45px;
+  }
+}
+
+/* Large  devices (desktop, 992px and up) */
+@media (min-width: 992px) {
+  p {
+    font-size: 21px;
+  }
+  h2 {
+    font-size: 45px;
+  }
+}

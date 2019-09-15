@@ -1,0 +1,13 @@
+
+.navbar {
+  border-bottom: #008ed6 3px solid
+}
+
+.logout-btn {
+  border: 1px solid #fff;
+}
+
+.navbar-nav>li {
+  text-align: center;
+  margin-top: 1em;
+}

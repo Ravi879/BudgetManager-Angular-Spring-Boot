@@ -1,0 +1,68 @@
+<ng-template class="border-success text-dark" id="registerModel" #content >
+
+    <div class="modal-header bg-info">
+        <h5 class="modal-title" id="modal-basic-title">Sign Up</h5>
+        <button type="button" class="close" aria-label="Close" (click)="hideDialog()" [disabled]="btnSubmitText != 'Submit'">&times;</button>
+    </div>
+
+    <form id="form_register" [formGroup]="form">
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="register_username">Name</label>
+                <input type="text" class="form-control" maxlength="24" id="register_username"
+                formControlName="userName" [ngClass]="{'is-invalid': form.get('userName').touched && form.get('userName').invalid}">
+                <div class="invalid-feedback">
+                    <div *ngIf="form.get('userName').errors?.required">User name is required</div>
+                    <div *ngIf="form.get('userName').errors?.pattern">Please enter the correct user name</div>
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="register_email">Email</label>
+                <input type="email" autocomplete='email' class="form-control" maxlength="50" id="register_email"
+                formControlName="email" [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}">
+                <div class="invalid-feedback">
+                    <div *ngIf="form.get('email').errors?.required">Email address is required</div>
+                    <div *ngIf="form.get('email').errors?.pattern">Please enter the valid email address</div>
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="register_password">Password</label>
+                <input type="password" class="form-control" maxlength="12" id="register_password"
+                formControlName="password" [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
+              <div class="invalid-feedback">
+                <div *ngIf="form.get('password').errors?.required">Password is required</div>
+                <div *ngIf="form.get('password').errors?.pattern">Must have at least 6 character with one digit, uppercase and special char</div>
+                <div *ngIf="form.get('password').errors?.minLength">Password must have at least 8 characters</div>
+                <div *ngIf="form.get('password').errors?.maxLength">Password length should not exceed 12 characters</div>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="register_confirm_password">Confirm Password</label>
+                <input type="password" class="form-control" name="register_confirm_password" id="register_confirm_password" maxlength="12"
+                       formControlName="confirmPassword"
+                       [ngClass]="{'is-invalid':
+                        form.get('confirmPassword').touched &&
+                        (form.get('password').value != form.get('confirmPassword').value)}">
+                <div class="invalid-feedback">
+                    <div>Password did not match</div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" role="button" class="btn btn-primary btn-block" name="register_submit" id="register_submit"
+                    [ngClass]="{'disabled':form.invalid || btnSubmitText != 'Submit', 'not-allowed': form.invalid}" (click)="onSubmit()">
+              <i class="fa fa-spinner fa-pulse " *ngIf="btnSubmitText != 'Submit' "></i>
+              {{btnSubmitText}}
+            </button>
+        </div>
+
+    </form>
+
+</ng-template>
+
+
+<button class="btn blue-btn text-white" (click)="open(content)">
+  Sign up
+</button>

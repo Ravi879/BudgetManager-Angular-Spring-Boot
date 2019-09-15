@@ -1,0 +1,7 @@
+
+.img-cancel{
+  content: url("../../../assets/svg/error.svg");
+  max-height: 75px;
+  max-width: 75px;
+}
+

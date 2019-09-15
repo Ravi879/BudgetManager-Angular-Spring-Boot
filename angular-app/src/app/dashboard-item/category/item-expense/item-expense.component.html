@@ -1,0 +1,15 @@
+<div class='row mb-2 ' id='expense_{{expense.id}}'>
+  <div class='col card text-dark px-1' [ngStyle]="{'background-color': backColor}">
+      <div class="p-0 card-title m-0 text-right item-title btn-item-delete" style="height: 12px;"
+           [ngClass]="{ 'hide-item_btns' : isItemBtnsVisible != true}" (click)="toggleItemBtns()">
+          <img role="button" alt="edit-icon"   class="btn-edit-item" style="margin-right: 10px;" (click)="editItem($event)" />
+          <img role="button" alt="delete-icon" class="btn-delete-item" (click)="deleteItem($event)" />
+      </div>
+      <div [ngClass]="{ 'mt-1' : isItemBtnsVisible == true}" ></div>
+      <div class='card-body form-row pr-2 pb-2 pt-0 mt-2 item-body' (click)="toggleItemBtns()">
+          <h4 class='col-7 h5 card-text pr-0 pb-0 mb-0 item-description'>{{expense.description}}</h4>
+          <p class='col-3 font-weight-bold text-right pr-0 my-auto item-value'>{{expense.value}}</p>
+          <p class='col-2 mb-0 my-auto text-center' ><mark class='item-percentage py-0' id='item__percentage'>{{expense.percentage}}</mark>  </p>
+      </div>
+  </div>
+</div>

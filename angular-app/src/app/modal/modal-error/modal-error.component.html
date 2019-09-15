@@ -1,0 +1,10 @@
+<div class="modal-header" style="background: #e85e6c; padding: 35px;">
+  <div class="icon-box" style="margin: auto; height: 75px; width: 75px;">
+    <img alt="error-icon" class="img-error" (click)="bsModalRef.hide()" />
+  </div>
+</div>
+<div class="modal-body text-center">
+  <h4>Oops! Something went wrong</h4>
+  <p>{{reason}}</p>
+  <p>Status: <span style="color: red">{{statusCode}}</span></p>
+</div>

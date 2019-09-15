@@ -1,0 +1,55 @@
+<section id="itemAddOrUpdate" class="text-center px-4 py-2 bg-dark text-white">
+  <div class="container">
+    <h1>{{isEditItem == true? 'Edit Item' : 'New Item'}}</h1>
+    <form class="form-group row justify-content-center justify-content-sm-center mb-2" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="col-12 col-md-3 col-lg-2 mr-lg-2 form-group row">
+
+        <select class="col-md-9 col-lg-11 custom-select" name="type" title="Category"
+                [(ngModel)]="currentItem.type" #typeCtrl="ngModel"
+                [class.is-invalid]="typeCtrl.invalid && form.submitted" required [disabled]="isEditItem">
+          <option *ngFor="let option of itemOptions"  [value]="option.value">
+            {{option.display}}
+          </option>
+        </select>
+        <div class="invalid-tooltip mt-0" style="position: absolute; ">
+          Please select Category.
+        </div>
+
+      </div>
+
+
+      <div class="col-12 col-md-5 col-lg-4 mr-md-2 form-group row ">
+        <input value="" type="text" maxlength="49" class="form-control" name="description" id="add__description" placeholder="Add description"
+               [(ngModel)]="currentItem.description" #nameCtrl="ngModel"
+               [class.is-invalid]="nameCtrl.invalid && form.submitted" required>
+        <div class="invalid-tooltip mt-0 ml-md-5" style="position: absolute;">
+          Please enter the description.
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3 col-lg-2 mr-md-2 form-group row ">
+        <input value="" type="number" class="form-control  form" id="add__value" name="amount" placeholder="Amount"
+               [(ngModel)]="currentItem.value" #valueCtrl="ngModel"
+               [class.is-invalid]="valueCtrl.invalid && form.submitted" required>
+        <div class="invalid-tooltip mt-0" style="position: absolute;">
+          Please enter the amount.
+        </div>
+      </div>
+
+      <div class="col-12 col-md-2 col-lg-2 form-group row ">
+        <button class="btn btn-outline-success btn-block py-1 py-xl-0 mx-md-4">
+          <img class="check-back" *ngIf="isFormSubmitted == false"/>
+          <i class="fa fa-spinner fa-pulse fa-2x fa-fw" *ngIf="isFormSubmitted == true" style="color: white"></i>
+        </button>
+      </div>
+
+      <div class="col-12 col-md-2 col-lg-2 form-group row " [ngClass]="{'hide-btn-cancel' : isEditItem != true || isFormSubmitted}">
+        <button type="reset" class="btn btn-outline-danger btn-block  py-1 py-xl-0 mx-md-4" (click)="resetForm(form)">
+            <img class="cancel-back" />
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+

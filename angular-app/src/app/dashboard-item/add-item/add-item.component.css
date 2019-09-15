@@ -1,0 +1,28 @@
+.check-back {
+  width: 45px;
+  height: 30px;
+}
+
+button img.check-back {
+  content: url("../../../assets/svg/check-circle-green.svg");
+}
+
+button:hover  img.check-back  {
+  content: url("../../../assets/svg/check-circle-white.svg");
+}
+
+.hide-btn-cancel{
+  display: none;
+}
+
+.cancel-back{
+  max-width: 45px;
+  max-height: 30px;
+}
+
+button img.cancel-back {
+  content: url("../../../assets/svg/cancel-thick-red.svg");
+}
+button:hover  img.cancel-back  {
+  content: url("../../../assets/svg/cancel-thick-white.svg");
+}
