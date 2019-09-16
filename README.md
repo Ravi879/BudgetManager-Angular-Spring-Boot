@@ -4,15 +4,15 @@
 This is a simple web application to track the income and expense. User can register, login and, add, remove or edit the income or expense item details.  
   
 ### For Live Demo, [Click here](https://ravi879.github.io/Budgety-anglr/budgety).  
-  
+
   
 ## Screenshot  
   
 1. Homepage  
-![Screenshot 1](https://github.com/Ravi879/BudgetManager-Angular-Spring-Boot/blob/master/screenshot/homepage.png "")  
+![Screenshot 1](https://github.com/Ravi879/BudgetManager-Angular-Spring-Boot/blob/master/screenshot/homepage.jpg "")  
   
 2. Dashboard  
-![Screenshot 2](https://github.com/Ravi879/BudgetManager/blob/master/screenshot/dashboard.png "")  
+![Screenshot 2](https://github.com/Ravi879/BudgetManager-Angular-Spring-Boot/blob/master/screenshot/dashboard.jpg "")  
 
 
 ## Built With  
