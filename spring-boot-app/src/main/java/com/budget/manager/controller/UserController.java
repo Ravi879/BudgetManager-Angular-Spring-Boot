@@ -25,8 +25,7 @@ public class UserController {
     private SecurityServiceImpl securityService;
 
     @PostMapping(value = "/register")
-    public @ResponseBody
-    ResponseEntity<UserResponse> registration(@RequestBody User user) {
+    public ResponseEntity<UserResponse> registration(@RequestBody User user, HttpServletRequest servletRequest) {
         Printer.print("/register.......... " + user.toString());
 
         if (user.getName() == null || user.getEmail() == null || user.getPassword() == null) {
@@ -34,16 +33,17 @@ public class UserController {
             return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
         }
 
+        String password = user.getPassword();
         User existingUser = userService.findByUserEmail(user.getEmail());
         if (existingUser != null) {
             UserResponse response = new UserResponse(false, Msg.USER_EXISTS);
             return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
         }
 
-        userService.save(user);
+        User newUser = userService.save(user);
 
-        UserResponse response = new UserResponse(true);
-        return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
+        return getAutoLoginResponse(servletRequest, user.getEmail(), password, newUser.getId());
+
     }
 
     @PostMapping("/login")
@@ -71,22 +71,10 @@ public class UserController {
 
         Printer.print(":| Given credential is valid, now trying to auto login......");
 
-        if (securityService.autoLogin(user.getEmail(), user.getPassword())) {
-            Printer.print(":) /login successful");
-
-            //this is the only place where user id is set in session.
-            UserSession.setUserId(servletRequest, existingUser.getId());
-
-            UserResponse response = new UserResponse(true);
-            return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
-        } else {
-            Printer.print(":( /login failed during auto login.");
-
-            UserResponse response = new UserResponse(false, Msg.ERROR_OCCURRED);
-            return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
-        }
+        return getAutoLoginResponse(servletRequest, user.getEmail(), user.getPassword(), existingUser.getId());
 
     }
+
 
     @GetMapping("/logout.success")
     public ResponseEntity<UserResponse> logoutSuccess() {
@@ -108,6 +96,24 @@ public class UserController {
     @GetMapping(value = "/unauthorized")
     public ResponseEntity<String> userIsNotAuthorized() {
         return new ResponseEntity<String>(Msg.ACCESS_DENIED, HttpStatus.FORBIDDEN);
+    }
+
+
+    private ResponseEntity<UserResponse> getAutoLoginResponse(HttpServletRequest servletRequest, String email, String password, Long userId) {
+        if (securityService.autoLogin(email, password)) {
+            Printer.print(":) /login successful");
+
+            //this is the only place where user id is set in session.
+            UserSession.setUserId(servletRequest, userId);
+
+            UserResponse response = new UserResponse(true);
+            return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
+        } else {
+            Printer.print(":( /login failed during auto login.");
+
+            UserResponse response = new UserResponse(false, Msg.ERROR_OCCURRED);
+            return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
+        }
     }
 
 }

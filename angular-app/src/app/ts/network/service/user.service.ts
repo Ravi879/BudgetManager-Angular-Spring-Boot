@@ -21,6 +21,8 @@ export class UserService {
           console.log("registering new user, response = ", data);
 
           if (data['success'] === true) {
+            this.setUserInLocalStorage();
+
             return of(Msg.signUpSuccessMsg);
           } else {
             const msg = data['msg'];

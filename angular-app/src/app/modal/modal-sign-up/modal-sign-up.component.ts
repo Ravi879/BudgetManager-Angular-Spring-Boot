@@ -4,9 +4,9 @@ import {Validation} from '../../ts/helper/Validation';
 import {UserService} from '../../ts/network/service/user.service';
 import {User} from '../../ts/modal/user';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {ModalSuccessComponent} from '../modal-success/modal-success.component';
 import {ModalOption} from '../../ts/helper/ModalOption';
 import {ErrorHandlerService} from '../../ts/service/error-handler.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-modal-sign-up',
@@ -24,7 +24,8 @@ export class ModalSignUpComponent implements OnInit {
   form: FormGroup = ModalSignUpComponent.getFormGroup();
   btnSubmitText = 'Submit';
 
-  constructor(private modalService: BsModalService, private errorHandlerService: ErrorHandlerService, private userService: UserService) {
+  constructor(private modalService: BsModalService, private errorHandlerService: ErrorHandlerService,
+              private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -53,10 +54,7 @@ export class ModalSignUpComponent implements OnInit {
           this.hideLoading();
           this.hideDialog();
 
-          const initialState = {
-            msg: successMsg
-          };
-          this.modalService.show(ModalSuccessComponent, {initialState});
+          this.router.navigate(['/dashboard']);
 
         }, error => {
           this.hideLoading();
