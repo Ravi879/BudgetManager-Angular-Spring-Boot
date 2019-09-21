@@ -38,13 +38,14 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           if (error.status == 401) {
 
             if (this.userService.isUserLoggedIn()) {
-              this.userService.deleteUserFromLocalStorage();
               reason = 'Session expired, please log in again.';
-
-              this.router.navigate(['homepage']);
             } else {
               reason = 'Access denied, please first log in.';
             }
+
+            this.userService.deleteUserFromLocalStorage();
+
+            this.router.navigate(['homepage']);
 
             const data = {
               msg: reason
