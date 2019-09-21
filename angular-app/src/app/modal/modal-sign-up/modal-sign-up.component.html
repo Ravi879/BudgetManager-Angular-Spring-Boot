@@ -63,6 +63,6 @@
 </ng-template>
 
 
-<button class="btn blue-btn text-white" (click)="open(content)">
-  Sign up
+<button class="btn" [ngClass]="{'btn-blue text-white':btnColor =='btnBlue', 'btn-success': btnColor == 'btnGreen'}" (click)="open(content)">
+  {{btnText}}
 </button>

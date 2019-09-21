@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Validation} from '../../ts/helper/Validation';
 import {UserService} from '../../ts/network/service/user.service';
@@ -15,14 +15,20 @@ import {ErrorHandlerService} from '../../ts/service/error-handler.service';
 })
 export class ModalSignUpComponent implements OnInit {
 
+  @Input('btnText')
+  btnText = 'Sign up';
+  @Input('btnColor')
+  btnColor = 'btnBlue';
+
+  modalRef: BsModalRef;
+  form: FormGroup = ModalSignUpComponent.getFormGroup();
+  btnSubmitText = 'Submit';
+
   constructor(private modalService: BsModalService, private errorHandlerService: ErrorHandlerService, private userService: UserService) {
   }
 
-  modalRef: BsModalRef;
-
-  form: FormGroup = ModalSignUpComponent.getFormGroup();
-
-  btnSubmitText = 'Submit';
+  ngOnInit() {
+  }
 
   private static getFormGroup(): FormGroup {
     return new FormGroup({
@@ -32,9 +38,6 @@ export class ModalSignUpComponent implements OnInit {
         Validators.pattern(Validation.passwordPattern)]),
       confirmPassword: new FormControl('', Validators.required)
     });
-  }
-
-  ngOnInit() {
   }
 
   open(content) {
