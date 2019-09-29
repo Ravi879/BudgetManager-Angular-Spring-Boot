@@ -27,9 +27,12 @@
               "./node_modules/font-awesome/css/font-awesome.min.css",
               {
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              }
+              },
+              "node_modules/intro.js/introjs.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/intro.js/intro.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

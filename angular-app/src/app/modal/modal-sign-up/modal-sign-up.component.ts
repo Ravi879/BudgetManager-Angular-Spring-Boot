@@ -6,7 +6,7 @@ import {User} from '../../ts/modal/user';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {ModalOption} from '../../ts/helper/ModalOption';
 import {ErrorHandlerService} from '../../ts/service/error-handler.service';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 
 @Component({
   selector: 'app-modal-sign-up',
@@ -54,7 +54,8 @@ export class ModalSignUpComponent implements OnInit {
           this.hideLoading();
           this.hideDialog();
 
-          this.router.navigate(['/dashboard']);
+          const navigationExtras: NavigationExtras = {state: {userName: user.name}};
+          this.router.navigate(['/dashboard'], navigationExtras);
 
         }, error => {
           this.hideLoading();

@@ -2,7 +2,7 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12" id="step4">
         <div class="mx-0">
           <div class="card text-white  mb-3 ">
             <div class="card-header bg-success text-center h2">Income</div>
@@ -32,7 +32,7 @@
 
 
       <div class="col-md-6 col-sm-12">
-        <div class="card text-white  mb-3">
+        <div class="card text-white  mb-3" id="step5">
           <div class="card-header bg-danger text-center h2">Expense</div>
           <div class="card-body bg-light item-card-container" id="card_expense_container">
               <app-item-expense *ngFor="let exp of getExpenseList(); " [expense]="exp"></app-item-expense>

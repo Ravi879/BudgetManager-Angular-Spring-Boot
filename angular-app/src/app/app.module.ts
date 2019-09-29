@@ -44,6 +44,7 @@ import {ErrorDialogService} from './ts/service/errordialog.service';
 import {ItemDBService} from './ts/network/service/item-d-b.service';
 import {ErrorHandlerService} from './ts/service/error-handler.service';
 import {ItemUIService} from './ts/service/item-u-i.service';
+import {IntroGuideService} from './ts/service/intro-guide.service';
 
 
 
@@ -93,6 +94,7 @@ import {ItemUIService} from './ts/service/item-u-i.service';
     ItemDBService,
     ErrorHandlerService,
     ErrorDialogService,
+    IntroGuideService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true}
   ],
 
