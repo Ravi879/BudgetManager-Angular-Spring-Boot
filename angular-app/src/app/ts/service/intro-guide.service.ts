@@ -9,7 +9,7 @@ export class IntroGuideService {
   constructor() {
   }
 
-  // when first user time add income or expense item, show how can edit or delete it.
+  // when first time user add income or expense item, show how can edit or delete it.
   showItemEditGuide(itemElementId: string) {
     const introSteps = this.getFirstItemSteps(itemElementId);
     const introOptions = this.getFirstItemOptions(introSteps);

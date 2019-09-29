@@ -56,7 +56,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
     let itemId: number;
 
     if (this.isEditItem && this.isItemDescriptionOrValueChanged() == false) {
-      this.errorHandlerService.resolve(Msg.itemNotEdited);
+      this.errorHandlerService.resolve(Msg.itemNotChanged);
       return;
     } else if (this.isEditItem) {
       itemId = this.currentItem.id;

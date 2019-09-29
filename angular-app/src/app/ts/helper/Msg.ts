@@ -7,6 +7,6 @@ export class Msg {
 
   public static logoutFailed = 'Error occurred. Please try again.';
 
-  public static itemNotEdited = 'The data has not changed.';
+  public static itemNotChanged = 'The data has not changed.';
 
 }
