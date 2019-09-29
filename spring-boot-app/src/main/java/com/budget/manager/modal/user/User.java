@@ -19,6 +19,9 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "first_item")
+    private Boolean firstItem = true;
+
     @ManyToMany
     private Set<Role> roles;
 
@@ -32,6 +35,7 @@ public class User {
         this.password = user.getPassword();
 
         this.roles = user.getRoles();
+        this.firstItem = user.getFirstItem();
     }
 
     public Long getId() {
@@ -74,9 +78,16 @@ public class User {
         this.roles = roles;
     }
 
+    public Boolean getFirstItem() {
+        return firstItem;
+    }
+
+    public void setFirstItem(Boolean userFirstTimeAddingItem) {
+        firstItem = userFirstTimeAddingItem;
+    }
 
     @Override
     public String toString() {
-        return "User - " + ", id " + id + ", name " + name + ", email " + email + ", password " + password;
+        return "User - " + ", id " + id + ", name " + name + ", email " + email + ", password " + password + ", firstItem " + firstItem;
     }
 }

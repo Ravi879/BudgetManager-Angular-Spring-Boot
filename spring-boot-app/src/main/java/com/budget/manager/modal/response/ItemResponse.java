@@ -4,6 +4,7 @@ public class ItemResponse<T> {
 
     String msg;
     T item;
+    Boolean firstItem;
 
     public ItemResponse() {
     }
@@ -19,6 +20,14 @@ public class ItemResponse<T> {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Boolean isFirstItem(){
+        return firstItem;
+    }
+
+    public void setIsFirstItem(Boolean firstItem){
+        this.firstItem = firstItem;
     }
 
     public T getItem() {

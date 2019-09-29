@@ -9,6 +9,7 @@ import com.budget.manager.modal.item.Income;
 import com.budget.manager.modal.response.ItemResponse;
 import com.budget.manager.repository.Item;
 import com.budget.manager.service.crud.ItemServiceImpl;
+import com.budget.manager.service.crud.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class ItemController {
 
     @Autowired
     ItemServiceImpl itemService;
+
+    @Autowired
+    UserServiceImpl userService;
 
     @PutMapping(value = {"/income/{itemId}"})
     public ResponseEntity<ItemResponse> saveIncome(@PathVariable Long itemId, @RequestBody Income income, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
@@ -46,7 +50,8 @@ public class ItemController {
         }
 
         Item newItem = itemService.saveItem(income);
-        return getResponseOfItemAdded(newItem, Income.class.getName());
+        Boolean isFirstItem = userService.isAddingFirstItem(servletRequest, userId);
+        return getResponseOfItemAdded(isFirstItem, newItem, Income.class.getName());
     }
 
     @PutMapping(value = {"/expense/{itemId}"})
@@ -68,7 +73,8 @@ public class ItemController {
         }
 
         Item newItem = itemService.saveItem(expense);
-        return getResponseOfItemAdded(newItem, Expense.class.getName());
+        Boolean isFirstItem = userService.isAddingFirstItem(servletRequest, userId);
+        return getResponseOfItemAdded(isFirstItem, newItem, Expense.class.getName());
     }
 
 
@@ -114,7 +120,7 @@ public class ItemController {
     }
 
 
-    private ResponseEntity<ItemResponse> getResponseOfItemAdded(Item item, String itemType) {
+    private ResponseEntity<ItemResponse> getResponseOfItemAdded(Boolean isFirstItem, Item item, String itemType) {
         if (item == null) {
             ItemResponse<Income> response = new ItemResponse<>();
             response.setMsg(Msg.ERROR_OCCURRED);
@@ -125,11 +131,13 @@ public class ItemController {
             ItemResponse<Income> response = new ItemResponse<>();
             Income newIncome = (Income) item;
             response.setItem(newIncome);
+            response.setIsFirstItem(isFirstItem);
             return new ResponseEntity<ItemResponse>(response, HttpStatus.OK);
         } else {
             ItemResponse<Expense> response = new ItemResponse<>();
             Expense newExpense = (Expense) item;
             response.setItem(newExpense);
+            response.setIsFirstItem(isFirstItem);
             return new ResponseEntity<ItemResponse>(response, HttpStatus.OK);
         }
 

@@ -15,7 +15,8 @@ import {ErrorHandlerService} from '../../ts/service/error-handler.service';
 })
 export class ModalLoginComponent implements OnInit {
 
-  constructor(private modalService: BsModalService, private errorHandlerService: ErrorHandlerService, private userService: UserService, private router: Router) {
+  constructor(private modalService: BsModalService, private errorHandlerService: ErrorHandlerService,
+              private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {

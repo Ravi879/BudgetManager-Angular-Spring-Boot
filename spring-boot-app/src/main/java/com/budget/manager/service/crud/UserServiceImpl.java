@@ -1,5 +1,6 @@
 package com.budget.manager.service.crud;
 
+import com.budget.manager.helper.UserSession;
 import com.budget.manager.modal.user.User;
 import com.budget.manager.repository.base.UserService;
 import com.budget.manager.repository.crud.RoleRepository;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,6 +38,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean isPasswordMatch(String password, String encodedPassword) {
         return bCryptPasswordEncoder.matches(password, encodedPassword);
+    }
+
+    @Override
+    public Boolean isAddingFirstItem(HttpServletRequest servletRequest, Long userId) {
+        if (!UserSession.isFirstItem(servletRequest)) {
+            return false;
+        }
+
+        Optional<User> user = userRepository.findById(userId);
+        user.ifPresent(user1 -> {
+            user1.setFirstItem(false);
+            userRepository.save(user1);
+            UserSession.setFirstItem(servletRequest, false);
+        });
+
+        return true;
     }
 
 }

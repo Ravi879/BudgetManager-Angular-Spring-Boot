@@ -28,13 +28,17 @@ export class ItemDBService {
 
     return this.httpClient.put(api, item).pipe(
       mergeMap(data => {
-        console.log("save item ",  type ,", response = ", data);
+        console.log('save item ', type, ', response = ', data);
 
         if (data['msg']) {
           const msg = data['msg'];
           return throwError(msg);
         } else {
-          return of(data['item']['id']);
+          const responseItem = {
+            'itemId': data['item']['id'],
+            'isFirstItem': data['firstItem']
+          };
+          return of(responseItem);
         }
 
       })
@@ -47,7 +51,7 @@ export class ItemDBService {
 
     return this.httpClient.delete(api).pipe(
       mergeMap(data => {
-        console.log("delete item ", type ,", response =", data);
+        console.log('delete item ', type, ', response =', data);
 
         if (data['msg']) {
           const msg = data['msg'];

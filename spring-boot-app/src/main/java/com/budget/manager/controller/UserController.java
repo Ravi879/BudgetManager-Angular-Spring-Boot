@@ -42,7 +42,7 @@ public class UserController {
 
         User newUser = userService.save(user);
 
-        return getAutoLoginResponse(servletRequest, user.getEmail(), password, newUser.getId());
+        return getAutoLoginResponse(servletRequest, user.getEmail(), password, newUser.getId(), true);
 
     }
 
@@ -71,7 +71,7 @@ public class UserController {
 
         Printer.print(":| Given credential is valid, now trying to auto login......");
 
-        return getAutoLoginResponse(servletRequest, user.getEmail(), user.getPassword(), existingUser.getId());
+        return getAutoLoginResponse(servletRequest, user.getEmail(), user.getPassword(), existingUser.getId(), existingUser.getFirstItem());
 
     }
 
@@ -99,12 +99,13 @@ public class UserController {
     }
 
 
-    private ResponseEntity<UserResponse> getAutoLoginResponse(HttpServletRequest servletRequest, String email, String password, Long userId) {
+    private ResponseEntity<UserResponse> getAutoLoginResponse(HttpServletRequest servletRequest, String email, String password, Long userId, Boolean firstItem) {
         if (securityService.autoLogin(email, password)) {
             Printer.print(":) /login successful");
 
             //this is the only place where user id is set in session.
             UserSession.setUserId(servletRequest, userId);
+            UserSession.setFirstItem(servletRequest, firstItem);
 
             UserResponse response = new UserResponse(true);
             return new ResponseEntity<UserResponse>(response, HttpStatus.OK);

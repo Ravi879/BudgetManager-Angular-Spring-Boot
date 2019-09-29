@@ -5,6 +5,7 @@ import {Item} from '../../ts/modal/Item';
 import {ErrorHandlerService} from '../../ts/service/error-handler.service';
 import {Subscription} from 'rxjs';
 import {Msg} from '../../ts/helper/Msg';
+import {IntroGuideService} from '../../ts/service/intro-guide.service';
 
 @Component({
   selector: 'app-add-item',
@@ -19,7 +20,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
   isEditItem = false;
   isFormSubmitted = false;
 
-  previousDescription:string;
+  previousDescription: string;
   previousValue: number;
 
   itemOptions = [
@@ -28,7 +29,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
     {display: 'Expense', value: 'expense'},
   ];
 
-  constructor(private itemUIService: ItemUIService, private dbService: ItemDBService, private errorHandlerService: ErrorHandlerService) {
+  constructor(private itemUIService: ItemUIService, private dbService: ItemDBService, private errorHandlerService: ErrorHandlerService,
+              private introGuideService: IntroGuideService) {
   }
 
   ngOnInit() {
@@ -64,27 +66,32 @@ export class AddItemComponent implements OnInit, OnDestroy {
 
     this.showLoading();
 
-    this.dbService.saveItem(itemId, item).subscribe(id => {
-        console.log('Item ', item.type ,' stored or updated, item description = ', item.description);
+    this.dbService.saveItem(itemId, item).subscribe(responseItem => {
+      console.log('Item ', item.type, ' stored or updated, item description = ', item.description);
 
-        item.id = id;
+      item.id = responseItem['itemId'];
 
-        if (itemId > 0) {
-          //update item to list
-          this.itemUIService.updateItem(item);
-        } else {
-          // add item to list
-          this.itemUIService.addItem(item);
+      if (itemId > 0) {
+        //update item to list
+        this.itemUIService.updateItem(item);
+      } else {
+        // add item to list
+        this.itemUIService.addItem(item);
+
+        if(responseItem["isFirstItem"]){
+          this.introGuideService.showItemEditGuide(item.type + '_' + item.id);
         }
 
-        this.resetForm(formSubmitted);
+      }
 
-        this.hideLoading();
-      }, error => {
-        this.hideLoading();
+      this.resetForm(formSubmitted);
 
-        this.errorHandlerService.resolve(error);
-      });
+      this.hideLoading();
+    }, error => {
+      this.hideLoading();
+
+      this.errorHandlerService.resolve(error);
+    });
 
   }
 
@@ -107,7 +114,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
   }
 
   private isItemDescriptionOrValueChanged(): boolean {
-    return this.currentItem.description != this.previousDescription|| this.currentItem.value != this.previousValue;
+    return this.currentItem.description != this.previousDescription || this.currentItem.value != this.previousValue;
   }
 
   private resetUserItem() {
