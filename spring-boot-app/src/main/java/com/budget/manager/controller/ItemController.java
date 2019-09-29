@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Objects;
 
 @CrossOrigin()
@@ -158,10 +159,18 @@ public class ItemController {
         if (UserSession.isSessionExists(servletRequest, servletResponse)) {
             return UserSession.getUserId(servletRequest);
         } else {
-            UserSession.redirectToSessionExpire(servletResponse);
+            redirectToSessionExpire(servletResponse);
             return null;
         }
     }
 
+    private static void redirectToSessionExpire(HttpServletResponse response){
+        try {
+            response.sendRedirect("/budgety/user/session.expired");
+        } catch (IOException e) {
+            Printer.print("IOException occurred inside UserSession.redirectToSessionExpire()");
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -32,9 +32,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
-	@Override
-	public Boolean isPasswordMatch(String password, String encodedPassword) {
-		return bCryptPasswordEncoder.matches(password, encodedPassword);
-	}
+    @Override
+    public Boolean isPasswordMatch(String password, String encodedPassword) {
+        return bCryptPasswordEncoder.matches(password, encodedPassword);
+    }
 
 }
